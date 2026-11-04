@@ -1,0 +1,84 @@
+algoritmo "Quick Sort"
+
+var
+  num: vetor[1..6] de inteiro
+  i, n, k, topo, les, ldi, a, b, p, ax: inteiro
+  esp: vetor[0..20] de inteiro
+  dip: vetor[0..20] de inteiro
+
+inicio
+  n <- 6
+
+  para k de 1 ate n faca
+    escreva("Digite o número ", k, ": "  )
+    leia(num[k])
+  fimpara
+
+  escreval(" ")
+  escreva("Vetor original: ")
+  para k de 1 ate n faca
+    escreva(num[k], " ")
+  fimpara
+  escreval("")
+  escreval("")
+
+
+  topo <- 1
+  esp[1] <- 1
+  dip[1] <- n
+
+  enquanto topo > 0 faca
+    les <- esp[topo]
+    ldi <- dip[topo]
+    topo <- topo - 1
+
+    a <- les
+    b <- ldi
+    p <- num[(les + ldi) \ 2]
+
+    enquanto a <= b faca
+      enquanto num[a] < p faca
+        a <- a + 1
+      fimenquanto
+      enquanto num[b] > p faca
+        b <- b - 1
+      fimenquanto
+
+      se a <= b entao
+        ax <- num[a]
+        num[a] <- num[b]
+        num[b] <- ax
+        a <- a + 1
+        b <- b - 1
+      fimse
+    fimenquanto
+
+    escreva("Pivô ", p, " posição ", les, " a ", ldi, ": ")
+    para k de 1 ate n faca
+      escreva(num[k], " ")
+    fimpara
+    escreval("")
+
+    se a < ldi entao
+      topo <- topo + 1
+      esp[topo] <- a
+      dip[topo] <- ldi
+    fimse
+    se les < b entao
+      topo <- topo + 1
+      esp[topo] <- les
+      dip[topo] <- b
+    fimse
+  fimenquanto
+
+  escreval("")
+  escreva("Vetor ordenado: ")
+  para k de 1 ate n faca
+    escreva(num[k], " ")
+  fimpara
+  escreval("")
+
+fimalgoritmo
+
+
+
